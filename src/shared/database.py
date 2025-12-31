@@ -1,4 +1,3 @@
-from collections.abc import Generator
 from typing import Annotated
 
 from sqlalchemy import create_engine

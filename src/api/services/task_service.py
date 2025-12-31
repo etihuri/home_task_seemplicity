@@ -103,9 +103,12 @@ class TaskService:
             # Cache hit - return cached response directly without DB query
             # Convert ISO format strings back to datetime objects
             if isinstance(cached_response.get("created_at"), str):
-                cached_response["created_at"] = datetime.fromisoformat(cached_response["created_at"])
-            if cached_response.get("completed_at") and isinstance(cached_response["completed_at"], str):
-                cached_response["completed_at"] = datetime.fromisoformat(cached_response["completed_at"])
+                cached_response["created_at"] = datetime.fromisoformat(
+                    cached_response["created_at"]
+                )
+            completed_at = cached_response.get("completed_at")
+            if completed_at and isinstance(completed_at, str):
+                cached_response["completed_at"] = datetime.fromisoformat(completed_at)
             if isinstance(cached_response.get("task_uuid"), str):
                 cached_response["task_uuid"] = UUID(cached_response["task_uuid"])
             return TaskOutputResponse(**cached_response)
