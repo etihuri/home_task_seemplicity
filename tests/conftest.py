@@ -40,7 +40,9 @@ def mock_cache() -> MagicMock:
     """Mock Redis cache."""
     cache = MagicMock()
     cache.get.return_value = None
+    cache.get_raw.return_value = None
     cache.set.return_value = None
+    cache.set_raw.return_value = None
     cache.ping.return_value = True
     return cache
 
